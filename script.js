@@ -1,47 +1,45 @@
 //creating the politician object a repeating function
 var createPolitician = function(firstName, partyColor, countryVotes) {
 
-  var politician = {};
-    politician.politicianName = firstName
-    politician.color = partyColor;
+var politician = {};
+politician.politicianName = firstName
+politician.color = partyColor;
 //electoral vote parameters
-    politician.electionResults = null;
-    politician.totalVotes = 0;
+politician.electionResults = null;
+politician.totalVotes = 0;
 //total votes parameters
-    politician.cVotes = countryVotes[0];
-    politician.votesPerState = null;
-    politician.percentofVote = 0;
-    politician.percentofTotalVotes = 0;
-    politician.totalVotesCast = 0;
+//countryvotes deref as an array
+politician.cVotes = countryVotes[0];
+politician.votesPerState = null;
+politician.percentofVote = [];
+politician.percentofTotalVotes = 0;
+politician.totalVotesCast = 0;
 
 //adding up all of the electoral state results
-    politician.addingTally = function(state) {
+politician.addingTally = function(state) {
 
-      this.totalVotes = 0;
+  this.totalVotes = 0;
 
-      for (var i = 0; i < this.electionResults.length; i++) {
-        this.totalVotes = this.totalVotes + this.electionResults[i];
-      }
-    };
+  for (var i = 0; i < this.electionResults.length; i++) {
+    this.totalVotes = this.totalVotes + this.electionResults[i];
+  }
+};
 
 //their votes as a percentage of the total votes they recieved for each individual state
-politician.percent = function(state) {
+politician.percent = function() {
 
-   this.percentofVote = 0;
-
-
-    for (var i = 0; i < this.votesPerState.length; i++){
-       this.percentofVote = (this.votesPerState[i] / this.cVotes) * 100;
-        }
+  for (var i = 0; i < this.votesPerState.length; i++){
+    this.percentofVote[i] = (this.votesPerState[i] / this.cVotes) * 100;
+  }
 };
 
 //their votes as a percentage of the overall votes cast in the election
-    politician.percentTotal = function() {
-      //can this be entered once as a parameter?
-      this.totalVotesCast = 138800000;
-      this.percentofTotalVotes = (this.cVotes / this.totalVotesCast) * 100;
-      this.percentofTotalVotes = this.percentofTotalVotes.toFixed(2);
-  };
+politician.percentTotal = function() {
+  //can this be entered once as a parameter?
+  this.totalVotesCast = 138800000;
+  this.percentofTotalVotes = (this.cVotes / this.totalVotesCast) * 100;
+  this.percentofTotalVotes = this.percentofTotalVotes.toFixed(2);
+};
 
 return politician;
 };
@@ -62,8 +60,8 @@ candidate1.addingTally();
 candidate2.addingTally();
 
 //calculating the percentage of their votes per state out of their total number of Votes
-candidate1.percent(state);
-candidate2.percent(state);
+candidate1.percent();
+candidate2.percent();
 
 //calculating the percentage of their votes out of the total votes cast
 candidate1.percentTotal();
@@ -87,8 +85,7 @@ var setStateResults = function(state) {
 
   if (candidate1.electionResults[state] > candidate2.electionResults[state]) {
     theStates[state].winner = candidate1;
-  }
-  else if (candidate2.electionResults[state] > candidate1.electionResults[state]) {
+  } else if (candidate2.electionResults[state] > candidate1.electionResults[state]) {
     theStates[state].winner = candidate2;
 }
 
@@ -96,8 +93,7 @@ var stateWinner = theStates[state].winner;
 
   if (theStates[state].winner !== null) {
     theStates[state].rgbColor = stateWinner.color;
-  }
-  else { theStates[state].rgbColor = [139, 174, 127];
+  } else { theStates[state].rgbColor = [139, 174, 127];
 }
 
 var bottomTable = document.getElementById("stateResults");
@@ -116,8 +112,8 @@ var bottomTable = document.getElementById("stateResults");
 
   secondColumn.children[1].innerText = candidate1.electionResults[state];
   thirdColumn.children[1].innerText = candidate2.electionResults[state];
-  secondColumn.children[2].innerText = candidate1.percentofVote[state]toFixed(2);
-  thirdColumn.children[2].innerText = candidate2.percentofVote[state]toFixed(2);
+  secondColumn.children[2].innerText = candidate1.percentofVote[state].toFixed(2);
+  thirdColumn.children[2].innerText = candidate2.percentofVote[state].toFixed(2);
 
   var fourthColumn = bottomTable.children[1].children[2];
 
