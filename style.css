@@ -28,10 +28,17 @@ header {
   position:relative;
 }
 
-#stateResults, #overallResults {
+#stateResults {
   width: 25%;
   font: 12px/16px 'Open Sans', Helvetica, Arial, sans-serif;
   color: #454545;
+}
+
+#overallResults {
+  width: 25%;
+  font: 12px/16px 'Open Sans', Helvetica, Arial, sans-serif;
+  color: #454545;
+  padding-left: 20px;
 }
 
 #countryResults {
