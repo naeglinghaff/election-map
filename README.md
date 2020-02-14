@@ -1,5 +1,5 @@
 # Election Map
-Interactive map of the 2016, United States election (HTML, CSS JS)
+Interactive map of the 2016, United States election (HTML, CSS, JS)
 
 ## What it does ##
 
