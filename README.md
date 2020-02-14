@@ -1,5 +1,5 @@
 # Election Map
-Interactive map of the 2016, United States Election
+Interactive map of the 2016, United States election
 
 ## What it does ##
 
